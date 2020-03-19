@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="list">
+    <table class="table table-striped border">
+        <thead class="thead">
+        <tr>
+            <th colspan="5" class="table-active" >All users</th>
+        </tr>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Login</th>
+            <th scope="col">Роли</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <script rel="script" src="js/RestApi.js"></script>
+        <tbody id="users"></tbody>
+    </table>
+    <div th:include="~{parts/editUser :: edit}"></div>
+</div>
+</body>
+</html>
