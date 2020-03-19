@@ -21,9 +21,5 @@ public class userController {
     public String delete() {
         return "redirect:/";
     }
-
-    @GetMapping("/user")
-    public String userCard(){
-        return "user";
-    }
+    
 }
