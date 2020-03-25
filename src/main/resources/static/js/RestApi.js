@@ -1,4 +1,4 @@
-var url = "http://localhost:8080/api/users";
+var url = "http://localhost:3000/api/users";
 fetch(url, {credentials: "include"})
     .then(
         function (response) {
@@ -27,7 +27,7 @@ function oneTr(u) {
         '<td>' + getRoleName(u.roles) +
         '</td> ' + '<td class="d-flex justify-content-around"> ' +
         '<a class="btn btn-primary eBtn" data-toggle="modal" data-target="#editUser" onclick="editUserRepl('+ u.id +')">Edit</a> ' +
-        '<a class="btn btn-danger dBtn" onclick="deleteUser(' + u.id + ')" href="/" ' +
+        '<a class="btn btn-danger dBtn" onclick="deleteUser(' + u.id + ')" href="/admin" ' +
         ' >Delete</a></td>'
 }
 
@@ -42,7 +42,7 @@ function getRoleName(u) {
 }
 
 function deleteUser(id) {
-    fetch(url + "/" + id, {method: 'delete'})
+    fetch(url + "/" + id, {method: 'delete', credentials: "include"})
         .then(
             function (response) {
                 if (response.status !== 200) {

@@ -10,9 +10,13 @@
 <div th:fragment="menu">
     <nav class="side navbar navbar-default">
         <ul class="nav nav-item">
-            <li>
+            <li sec:authorize="hasAuthority('ADMIN')">
                 <a style="width: 189px" class="btn btn-outline-primary" role="button" aria-pressed="true"
                    th:href="@{/admin}" href="#">Admin</a>
+            </li>
+            <li>
+                <a style="width: 187px" class="btn btn-outline-primary" role="button" aria-pressed="true"
+                   th:href="@{/user}" href="#">User</a>
             </li>
         </ul>
     </nav>
