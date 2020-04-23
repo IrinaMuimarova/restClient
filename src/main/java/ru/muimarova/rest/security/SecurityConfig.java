@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {  // WebSecuri
 
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {//переопределенный метод для конфигурации аутентификации для разных источников(память, бд, LDAP, )
+    public void configure(AuthenticationManagerBuilder auth) {//переопределенный метод для конфигурации аутентификации для разных источников(память, бд, LDAP, )
         auth.authenticationProvider(authProvider());        //кастомизация на юзер дао и кодировка
     }
 
@@ -71,7 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {  // WebSecuri
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/login").anonymous()
-                .anyRequest().authenticated();
-
+                .anyRequest().authenticated()
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .defaultSuccessUrl("/user");
     }
 }

@@ -10,7 +10,7 @@ fetch(url, {credentials: "include"})
             // Examine the text in the response
             response.json().then(function (data) {
                 for (let i = 0; i < data.length; i++) {
-                    document.getElementById("users").innerHTML += '<tr>' + oneTr(data[i]) + '</tr>';
+                    document.getElementById("users").innerHTML += '<tr id='+ data[i].id + '>' + oneTr(data[i]) + '</tr>';
                 }
             });
         }
@@ -21,13 +21,13 @@ fetch(url, {credentials: "include"})
 
 
 function oneTr(u) {
-    return '<td>' + u['id'] + '</td> ' +
+    return '<td id="id">' + u['id'] + '</td> ' +
         '<td>' + u['name'] + '</td> ' +
         '<td>' + u['login'] + '</td> ' +
         '<td>' + getRoleName(u.roles) +
         '</td> ' + '<td class="d-flex justify-content-around"> ' +
-        '<a class="btn btn-primary eBtn" data-toggle="modal" data-target="#editUser" onclick="editUserRepl('+ u.id +')">Edit</a> ' +
-        '<a class="btn btn-danger dBtn" onclick="deleteUser(' + u.id + ')" href="/admin" ' +
+        '<a class="btn btn-primary eBtn" data-toggle="modal" data-target="#editUser" onclick="editUserRepl(' + u.id + ')">Edit</a> ' +
+        '<a class="btn btn-danger dBtn" onclick="deleteUser(' + u.id + ')" ' +
         ' >Delete</a></td>'
 }
 
@@ -49,6 +49,7 @@ function deleteUser(id) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
                 }
+                document.getElementById(id).remove();
             }
         )
         .catch(function (err) {

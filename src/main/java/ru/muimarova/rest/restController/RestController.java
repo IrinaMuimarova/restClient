@@ -44,7 +44,7 @@ public class RestController {
     @PutMapping("/users")
     public ResponseEntity<User> updateUser(@RequestBody User theUser) {
         userService.saveUser(theUser);
-        return new ResponseEntity<>(theUser, HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserById(theUser.getId()), HttpStatus.OK);
     }
 
     @DeleteMapping("/users/{userId}")
